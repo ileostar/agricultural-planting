@@ -10,6 +10,9 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "docs:dev": "rspress dev",
+    "docs:build": "rspress build",
+    "docs:preview": "rspress preview",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo test --no-daemon",
@@ -28,19 +31,34 @@
     "*.json": "prettier --write"
   },
   "devDependencies": {
-    "prettier": "^3.0.0",
-    "prisma": "^5.1.0",
-    "turbo": "1.10.12",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-emoji": "1.3.2-canary.2",
+    "eslint": "^8.56.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "markdownlint": "^0.32.1",
-    "eslint": "^8.56.0"
+    "prettier": "^3.0.0",
+    "prisma": "^5.1.0",
+    "rspress": "^1.9.0",
+    "turbo": "1.10.12"
   },
   "engines": {
     "npm": ">=9.0.0",
     "node": ">=18"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "rollup",
+        "webpack",
+        "core-js"
+      ]
+    },
+    "allowedDeprecatedVersions": {
+      "sourcemap-codec": "*",
+      "w3c-hr-time": "*",
+      "stable": "*"
+    }
   }
 }

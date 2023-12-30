@@ -111,19 +111,5 @@
     "vite-svg-loader": "^4.0.0",
     "vue-eslint-parser": "^9.3.1",
     "vue-tsc": "^1.8.1"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "rollup",
-        "webpack",
-        "core-js"
-      ]
-    },
-    "allowedDeprecatedVersions": {
-      "sourcemap-codec": "*",
-      "w3c-hr-time": "*",
-      "stable": "*"
-    }
   }
 }
