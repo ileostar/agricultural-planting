@@ -1,0 +1,46 @@
+{
+  "name": "agricultural-planting",
+  "version": "0.0.1",
+  "packageManager": "pnpm@8.13.1",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "turbo test --no-daemon",
+    "test:cov": "jest run --coverage",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "typecheck": "tsc --noEmit",
+    "commit": "git add . && git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-emoji"
+    }
+  },
+  "lint-staged": {
+    "*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --cache --fix",
+    "*.json": "prettier --write"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "prisma": "^5.1.0",
+    "turbo": "1.10.12",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-emoji": "1.3.2-canary.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "markdownlint": "^0.32.1",
+    "eslint": "^8.56.0"
+  },
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=18"
+  }
+}

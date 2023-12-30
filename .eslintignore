@@ -1,0 +1,6 @@
+dist
+public
+node_modules
+playground/dist/*
+meta.json
+docs/*
