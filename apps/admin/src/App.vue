@@ -1,25 +1,26 @@
 <template>
-  <el-config-provider :locale="currentLocale">
-    <router-view />
-    <ReDialog />
-  </el-config-provider>
+  <n-config-provider
+    :theme="theme.naiveTheme"
+    :theme-overrides="theme.naiveThemeOverrides"
+    :locale="zhCN"
+    :date-locale="dateZhCN"
+    class="h-full"
+  >
+    <naive-provider>
+      <router-view />
+    </naive-provider>
+  </n-config-provider>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
-import { ReDialog } from "@/components/ReDialog";
-export default defineComponent({
-  name: "app",
-  components: {
-    [ElConfigProvider.name]: ElConfigProvider,
-    ReDialog
-  },
-  computed: {
-    currentLocale() {
-      return zhCn;
-    }
-  }
-});
+<script setup lang="ts">
+import { dateZhCN, zhCN } from 'naive-ui';
+import { subscribeStore, useThemeStore } from '@/store';
+import { useGlobalEvents } from '@/composables';
+
+const theme = useThemeStore();
+
+subscribeStore();
+useGlobalEvents();
 </script>
+
+<style scoped></style>

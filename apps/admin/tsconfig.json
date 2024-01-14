@@ -1,42 +1,24 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "Node",
-    "strict": false,
-    "jsx": "preserve",
-    "importHelpers": true,
-    "experimentalDecorators": true,
-    "strictFunctionTypes": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
     "baseUrl": ".",
-    "allowJs": false,
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "isolatedModules": true,
     "resolveJsonModule": true,
-    "lib": ["dom", "esnext"],
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@build/*": ["build/*"]
+      "~/*": ["./*"],
+      "@/*": ["./src/*"]
     },
-    "types": [
-      "node",
-      "vite/client",
-      "element-plus/global",
-      "@pureadmin/table/volar",
-      "@pureadmin/descriptions/volar"
-    ]
+    "types": ["vite/client", "node", "unplugin-icons/types/vue", "naive-ui/volar"]
   },
-  "include": [
-    "mock/*.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "types/*.d.ts",
-    "vite.config.ts"
-  ],
-  "exclude": ["dist", "**/*.js", "node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

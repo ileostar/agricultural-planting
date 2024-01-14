@@ -1,119 +1,132 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true
-  },
-  globals: {
-    // Ref sugar (take 2)
-    $: "readonly",
-    $$: "readonly",
-    $ref: "readonly",
-    $shallowRef: "readonly",
-    $computed: "readonly",
-
-    // index.d.ts
-    // global.d.ts
-    Fn: "readonly",
-    PromiseFn: "readonly",
-    RefType: "readonly",
-    LabelValueOptions: "readonly",
-    EmitType: "readonly",
-    TargetContext: "readonly",
-    ComponentElRef: "readonly",
-    ComponentRef: "readonly",
-    ElRef: "readonly",
-    global: "readonly",
-    ForDataType: "readonly",
-    ComponentRoutes: "readonly",
-
-    // script setup
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    withDefaults: "readonly"
-  },
-  extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/eslint-config-typescript"
-  ],
-  parser: "vue-eslint-parser",
-  parserOptions: {
-    parser: "@typescript-eslint/parser",
-    ecmaVersion: 2020,
-    sourceType: "module",
-    jsxPragma: "React",
-    ecmaFeatures: {
-      jsx: true
-    }
-  },
+  extends: ['soybeanjs/vue'],
   overrides: [
     {
-      files: ["*.ts", "*.vue"],
+      files: ['./scripts/*.ts'],
       rules: {
-        "no-undef": "off"
+        'no-unused-expressions': 'off'
       }
     },
     {
-      files: ["*.vue"],
-      parser: "vue-eslint-parser",
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".vue"],
-        ecmaVersion: "latest",
-        ecmaFeatures: {
-          jsx: true
-        }
-      },
+      files: ['*.vue'],
       rules: {
-        "no-undef": "off"
+        'no-undef': 'off', // use tsc to check the ts code of the vue
+        'vue/no-setup-props-destructure': 'off' // wait to fix this rule
       }
     }
   ],
+  settings: {
+    'import/core-modules': ['uno.css', '~icons/*', 'virtual:svg-icons-register']
+  },
   rules: {
-    "vue/no-v-html": "off",
-    "vue/require-default-prop": "off",
-    "vue/require-explicit-emits": "off",
-    "vue/multi-word-component-names": "off",
-    "@typescript-eslint/no-explicit-any": "off", // any
-    "no-debugger": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off", // setup()
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "vue/html-self-closing": [
-      "error",
+    'import/order': [
+      'error',
       {
-        html: {
-          void: "always",
-          normal: "always",
-          component: "always"
-        },
-        svg: "always",
-        math: "always"
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_"
-      }
-    ],
-    "no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_"
-      }
-    ],
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto"
+        'newlines-between': 'never',
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        pathGroups: [
+          {
+            pattern: 'vue',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: 'vue-router',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: 'pinia',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: 'naive-ui',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: '@/constants',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/config',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/settings',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/plugins',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/layouts',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/views',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/components',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/router',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/service',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/store',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/context',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/composables',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/hooks',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/utils',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/assets',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@/**',
+            group: 'internal',
+            position: 'before'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['vue', 'vue-router', 'pinia', 'naive-ui']
       }
     ]
   }

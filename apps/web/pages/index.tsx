@@ -1,4 +1,3 @@
-import { Button } from "ui";
 import { useHelloQuery } from "../src/store/services/api";
 
 export default function Web() {
@@ -7,7 +6,8 @@ export default function Web() {
   return (
     <div>
       <h1>{data?.message}</h1>
-      <Button />
+      <button onClick={() => console.log("clicked")}>Click me</button>
+      <b />
     </div>
   );
 }
