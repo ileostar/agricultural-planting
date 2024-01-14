@@ -43,3 +43,5 @@ doc_build
 .vscode/**/*
 !.vscode/settings.json
 !.vscode/extensions.json
+
+*.log
