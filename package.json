@@ -46,8 +46,7 @@
     "prisma": "^5.8.0",
     "rspress": "^1.9.3",
     "tsconfig": "workspace:^",
-    "turbo": "1.10.12",
-    "ui": "*"
+    "turbo": "1.10.12"
   },
   "engines": {
     "npm": ">=9.0.0",

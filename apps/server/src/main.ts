@@ -1,30 +1,49 @@
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { join } from 'node:path'
+import { NestFactory } from '@nestjs/core'
+import type { NestExpressApplication } from '@nestjs/platform-express'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { AppModule } from './app.module'
 
-declare const module: any;
-async function bootstrap() {
-  const logger = new Logger('EntryPoint');
-  const app = await NestFactory.create(AppModule);
-
+function setupSwagger(app) {
   const config = new DocumentBuilder()
-    .setTitle('Leaves Tracker')
-    .setDescription('Api Docs for leaves tracker')
+    .setTitle('前端三轮考核接口')
+    .setContact('考核题目链接☛', 'https://dkmjddbh0f.feishu.cn/docx/T7IAdyWpho6ZUhxkSuqciIj1nKQ?from=from_copylink', null)
+    .setDescription('师弟师妹们加油🦆~~~')
     .setVersion('1.0')
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
-
-  const PORT = 5002;
-
-  await app.listen(PORT);
-
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
-  logger.log(`Server running on http://localhost:${PORT}`);
+    .build()
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('docs', app, document, {
+    customSiteTitle: 'LeoStar',
+    customfavIcon: 'https://avatars.githubusercontent.com/u/108746194?s=200&v=4',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+    ],
+    customCssUrl: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
+    ],
+  })
 }
-bootstrap();
+
+async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
+
+  // 处理跨域
+  app.enableCors({
+    origin: '*',
+    credentials: true,
+    allowedHeaders:['Authorization', 'content-type'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+  })
+
+  setupSwagger(app)
+
+  // 配置静态文件中间件
+  app.useStaticAssets(join(__dirname, '..', 'public'))
+
+  await app.listen(3000)
+}
+bootstrap()
