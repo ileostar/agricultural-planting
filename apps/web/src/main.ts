@@ -1,24 +1,26 @@
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { ViteSSG } from 'vite-ssg'
 import { setupLayouts } from 'virtual:generated-layouts'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import Vue3Lottie from 'vue3-lottie'
-import OnuUI from 'onu-ui'
+
+// import Previewer from 'virtual:vue-component-preview'
+import { routes } from 'vue-router/auto/routes'
 import App from './App.vue'
+import type { UserModule } from '../types/types'
 
-import store from './store'
 import '@unocss/reset/tailwind.css'
-import './styles/main.css'
 import 'onu-ui/dist/style.css'
+import './styles/main.css'
 import 'uno.css'
-const app = createApp(App)
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  extendRoutes: (routes) => setupLayouts(routes),
-})
-store.use(piniaPluginPersistedstate)
-app.use(Vue3Lottie, { name: 'LottieAnimation' })
-app.use(router)
-app.use(store)
-app.use(OnuUI)
-app.mount('#app')
+export const createApp = ViteSSG(
+  App,
+  {
+    routes: setupLayouts(routes),
+    base: import.meta.env.BASE_URL,
+  },
+  (ctx) => {
+    // install all modules under `modules/`
+    Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true }))
+      .forEach(i => i.install?.(ctx))
+    // ctx.app.use(Previewer)
+  },
+)

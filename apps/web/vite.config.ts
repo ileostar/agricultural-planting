@@ -5,21 +5,23 @@ import fs from 'node:fs'
 import { defineConfig } from 'vite'
 import type { CommonServerOptions, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
+import generateSitemap from 'vite-ssg-sitemap'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import PiniaAutoRefs from 'pinia-auto-refs'
 import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueMacros from 'unplugin-vue-macros/vite'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
+import { VitePWA } from 'vite-plugin-pwa'
+import VueDevTools from 'vite-plugin-vue-devtools'
 import VueRouter from 'unplugin-vue-router/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import VueDevtools from 'vite-plugin-vue-devtools'
 import { OnuResolver } from 'onu-ui'
-import depazer from '@depazer/vite'
 import ViteRestart from 'vite-plugin-restart'
+import WebfontDownload from 'vite-plugin-webfont-dl'
 import type { DotenvParseOutput } from 'dotenv'
 import Layouts from 'vite-plugin-vue-layouts';
 import dotenv from 'dotenv'
@@ -81,12 +83,7 @@ export default defineConfig((mode: ConfigEnv) => {
         include: [path.resolve(__dirname, 'locales/**')],
       }),
 
-      VueDevtools(),
-
       Layouts(),
-
-      // https://github.com/depazer/depazer
-      depazer(),
 
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
@@ -181,10 +178,62 @@ export default defineConfig((mode: ConfigEnv) => {
         compiler: 'vue3',
         autoInstall: true,
       }),
+
+      // https://github.com/antfu/vite-plugin-pwa
+      VitePWA({
+        registerType: 'autoUpdate',
+        includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
+        manifest: {
+          name: 'Vitesse',
+          short_name: 'Vitesse',
+          theme_color: '#ffffff',
+          icons: [
+            {
+              src: '/pwa-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+            },
+            {
+              src: '/pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+            },
+            {
+              src: '/pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any maskable',
+            },
+          ],
+        },
+      }),
+
+      // https://github.com/feat-agency/vite-plugin-webfont-dl
+      WebfontDownload(),
+
+      // https://github.com/webfansplz/vite-plugin-vue-devtools
+      VueDevTools(),
     ],
     // https://github.com/vitest-dev/vitest
     test: {
       environment: 'jsdom',
+    },
+
+    // https://github.com/antfu/vite-ssg
+    ssgOptions: {
+      script: 'async',
+      formatting: 'minify',
+      crittersOptions: {
+        reduceInlineStyles: false,
+      },
+      onFinished() {
+        generateSitemap()
+      },
+    },
+  
+    ssr: {
+      // TODO: workaround until they support native ESM
+      noExternal: ['workbox-window', /vue-i18n/],
     },
   }
 })

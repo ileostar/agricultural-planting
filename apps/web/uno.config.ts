@@ -4,6 +4,8 @@ import {
   presetIcons,
   presetUno,
   presetWebFonts,
+  transformerDirectives,
+  transformerVariantGroup,
 } from 'unocss'
 import { presetDaisy } from "unocss-preset-daisy";
 import { presetGrid } from 'unocss-preset-grid'
@@ -47,5 +49,10 @@ export default defineConfig({
     presetDaisy({
       themes: true,
     }),
-  ]
+  ],
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup(),
+  ],
+  safelist: 'prose m-auto text-left'.split(' '),
 })

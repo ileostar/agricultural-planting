@@ -11,10 +11,12 @@
       "~/*": ["../../packages/*"]
     },
     "types": [
+      "vitest",
       "vite/client",
       "@alova/adapter-axios",
       "@intlify/unplugin-vue-i18n/messages",
       "unplugin-vue-macros/macros-global",
+      "vite-plugin-pwa/client",
       "vite-plugin-vue-layouts/client",
       "element-plus/global"
     ],
@@ -27,10 +29,19 @@
     "noUnusedLocals": true,
     "skipLibCheck": true
   },
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/*.d.ts"],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-models",
+      "@vue-macros/volar/define-slots"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/*.d.ts",
+    "types/types.ts"
+  ],
+  "exclude": ["dist", "node_modules", "cypress"]
 }

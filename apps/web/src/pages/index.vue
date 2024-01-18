@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { msg } = useStore('home')
 </script>
 
 <template>
@@ -72,6 +73,7 @@
         <a href="#item4" class="btn btn-xs">4</a>
       </div>
     </div>
+    {{ msg }}
     <!-- <div class="stats stats-vertical shadow">
       <div class="stat text-primary">
         <div class="stat-title">温度</div>
