@@ -1,15 +1,14 @@
 <script setup>
 import { Vue3Lottie } from 'vue3-lottie'
 import LogoJSON from '@/assets/lottie/logo.json'
-
-
+import config from '~/config/all.config'
 </script>
 
 <template>
   <div w-full h-full flex items-center justify-between ml="-1.2">
     <div flex items-center>
       <p w-18><Vue3Lottie :animationData="LogoJSON"/></p>
-      <h1 font-bold color-green-800 text-4>植物监测系统</h1>
+      <h1 font-bold color-green-800 text-4>{{ config.web.projectName }}</h1>
     </div>
     <div pr-3 flex items-center gap-3>
       <div class="flex-none">

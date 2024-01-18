@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AuthBox: typeof import('./../src/components/AuthBox.vue')['default']
+    Carousel: typeof import('./../src/components/Carousel.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -22,6 +23,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideMenu: typeof import('./../src/components/SideMenu.vue')['default']
+    StateCard: typeof import('./../src/components/StateCard.vue')['default']
     TheFooter: typeof import('./../src/components/TheFooter.vue')['default']
     TheHeader: typeof import('./../src/components/TheHeader.vue')['default']
     TheInput: typeof import('./../src/components/TheInput.vue')['default']

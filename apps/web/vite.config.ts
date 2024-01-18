@@ -10,6 +10,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import PiniaAutoRefs from 'pinia-auto-refs'
 import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueMacros from 'unplugin-vue-macros/vite'
 import VueRouter from 'unplugin-vue-router/vite'
@@ -20,6 +21,7 @@ import { OnuResolver } from 'onu-ui'
 import depazer from '@depazer/vite'
 import ViteRestart from 'vite-plugin-restart'
 import type { DotenvParseOutput } from 'dotenv'
+import Layouts from 'vite-plugin-vue-layouts';
 import dotenv from 'dotenv'
 
 // https://vitejs.dev/config/
@@ -46,6 +48,7 @@ export default defineConfig((mode: ConfigEnv) => {
     resolve: {
       alias: {
         '@/': `${path.resolve(__dirname, 'src')}/`,
+        '~/': `${path.resolve(__dirname, '../../packages/')}/`,
       },
       extensions: ['.js', '.json', '.ts'],
     },
@@ -70,7 +73,17 @@ export default defineConfig((mode: ConfigEnv) => {
         ],
       }),
 
+      // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
+      VueI18n({
+        runtimeOnly: true,
+        compositionOnly: true,
+        fullInstall: true,
+        include: [path.resolve(__dirname, 'locales/**')],
+      }),
+
       VueDevtools(),
+
+      Layouts(),
 
       // https://github.com/depazer/depazer
       depazer(),

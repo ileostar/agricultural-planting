@@ -7,12 +7,15 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "~/*": ["../../packages/*"]
     },
     "types": [
       "vite/client",
       "@alova/adapter-axios",
+      "@intlify/unplugin-vue-i18n/messages",
       "unplugin-vue-macros/macros-global",
+      "vite-plugin-vue-layouts/client",
       "element-plus/global"
     ],
     "resolveJsonModule": true,

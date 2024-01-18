@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div i-streamline-emojis-magnifying-glass-tilted-left inline-block text-4xl />
-    <p>
-      Not Found
-    </p>
+    not-found
   </div>
 </template>
+
+<route lang="yaml">
+meta:
+  layout: 404
+</route>

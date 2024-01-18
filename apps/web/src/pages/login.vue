@@ -79,50 +79,48 @@ const resetForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <template>
-  <div>
-    <AuthBox>
-      <template v-slot:title>
-        植物监测系统
-      </template>
-      <template v-slot:lottie >
-          <Vue3Lottie :animationData="LoginJSON" width="95%"/>
-      </template>
-      <template v-slot:header>
-        登陆
-      </template>
-      <template v-slot:content>
-        <el-form
-        ref="ruleFormRef"
-        :model="ruleForm"
-        status-icon
-        label-position="top"
-        :rules="rules"
-        label-width="120px"
-        class="demo-ruleForm"
-        mt-7>
-          <el-form-item label="用户名" prop="username" class="item">
-            <el-input v-model="ruleForm.username" type="text" autocomplete="off" />
-          </el-form-item>
-          <el-form-item label="密码" prop="password" class="item">
-            <el-input
-              v-model="ruleForm.password"
-              type="password"
-              autocomplete="off"
-            />
-          </el-form-item>
-          <el-form-item class="login-button">
-            <o-button type="success" @click="go()" @keydown.enter="keyDown($event)" w-23 work-spacing-5 mr-2>
-              登&nbsp;&nbsp;&nbsp;陆
-            </o-button>
-            <o-button type="info" @click="resetForm(ruleFormRef)" w-23 work-spacing-5>
-              重&nbsp;&nbsp;&nbsp;置
-            </o-button>
-          </el-form-item>
-        </el-form>
-        <router-link to="/register" tag="div" class="goRegister" align="right" text-3 color-green-600>
-          没有账号？转去注册 
-        </router-link>
-      </template>
-    </AuthBox>
-  </div>
+  <AuthBox>
+    <template v-slot:title>
+      植物监测系统
+    </template>
+    <template v-slot:lottie >
+        <Vue3Lottie :animationData="LoginJSON" width="95%"/>
+    </template>
+    <template v-slot:header>
+      登陆
+    </template>
+    <template v-slot:content>
+      <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      status-icon
+      label-position="top"
+      :rules="rules"
+      label-width="120px"
+      class="demo-ruleForm"
+      mt-7>
+        <el-form-item label="用户名" prop="username" class="item">
+          <el-input v-model="ruleForm.username" type="text" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="密码" prop="password" class="item">
+          <el-input
+            v-model="ruleForm.password"
+            type="password"
+            autocomplete="off"
+          />
+        </el-form-item>
+        <el-form-item class="login-button">
+          <o-button type="success" @click="go()" @keydown.enter="keyDown($event)" w-23 work-spacing-5 mr-2>
+            登&nbsp;&nbsp;&nbsp;陆
+          </o-button>
+          <o-button type="info" @click="resetForm(ruleFormRef)" w-23 work-spacing-5>
+            重&nbsp;&nbsp;&nbsp;置
+          </o-button>
+        </el-form-item>
+      </el-form>
+      <router-link to="/register" tag="div" class="goRegister" align="right" text-3 color-green-600>
+        没有账号？转去注册 
+      </router-link>
+    </template>
+  </AuthBox>
 </template>
