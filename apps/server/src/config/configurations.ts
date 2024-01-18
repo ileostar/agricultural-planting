@@ -4,11 +4,11 @@ function loadConfig() {
 
   return {
     db: {
-      database: 'three-wheel',
-      host: 'rm-cn-9lb3fu86r000zd1o.rwlb.rds.aliyuncs.com',
+      database: 'plant',
+      host: 'localhost',
       port: Number.parseInt(env.TYPEORM_PORT, 10) || 3306,
-      username:'liuxingyu',
-      password: 'Liu20020820',
+      username:'root',
+      password: 'root',
     },
   }
 }

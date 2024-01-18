@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AuthBox: typeof import('./../src/components/AuthBox.vue')['default']
+    ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElForm: typeof import('element-plus/es')['ElForm']
@@ -15,11 +16,14 @@ declare module 'vue' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
+    Header: typeof import('./../src/components/Header.vue')['default']
     OButton: typeof import('onu-ui')['OButton']
     OText: typeof import('onu-ui')['OText']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideMenu: typeof import('./../src/components/SideMenu.vue')['default']
     TheFooter: typeof import('./../src/components/TheFooter.vue')['default']
+    TheHeader: typeof import('./../src/components/TheHeader.vue')['default']
     TheInput: typeof import('./../src/components/TheInput.vue')['default']
     TheStudy: typeof import('./../src/components/TheStudy.vue')['default']
   }
