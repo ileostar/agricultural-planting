@@ -311,6 +311,8 @@
     "watchWithFilter": true,
     "whenever": true,
     "defineLoader": true,
-    "definePage": true
+    "definePage": true,
+    "useI18n": true,
+    "preferredDark": true
   }
 }

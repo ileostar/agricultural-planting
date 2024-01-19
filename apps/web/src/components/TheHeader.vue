@@ -39,15 +39,21 @@ import config from '~/config/all.config'
           <i i-carbon:intent-request-create h-5 w-5 />
         </button>
         <label class="swap swap-rotate h-9 w-9 btn btn-ghost btn-circle" title="日夜间切换">
-  
+
           <!-- this hidden checkbox controls the state -->
           <input type="checkbox" />
           <i i-carbon:sun class="swap-on" ></i>
           <i i-carbon:moon class="swap-off" ></i>
         </label>
-        <button class="btn btn-ghost btn-circle" h-9 w-9 flex items-center justify-center title="国际化">
-          <i i-carbon:ibm-watson-language-translator />
-        </button>
+        <div class="dropdown dropdown-end">
+          <button class="btn btn-ghost btn-circle" h-9 w-9 flex items-center justify-center title="国际化">
+            <i i-carbon:ibm-watson-language-translator />
+          </button>
+          <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-30">
+            <li><a>简体中文</a></li>
+            <li><a>English</a></li>
+          </ul>
+        </div>
         <button class="btn btn-ghost btn-circle" h-9 w-9 title="通知告警">
           <div class="indicator">
             <div h-9 w-9 flex items-center justify-center>

@@ -1,5 +1,5 @@
 {
-  "name": "three-wheel",
+  "name": "server",
   "private": true,
   "packageManager": "pnpm@8.9.2",
   "scripts": {
@@ -17,7 +17,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "commit": "git add . & git-cz",
     "push": "git push",
-    "vercel": "vercel --prod"
+    "vercel": "vercel --prod",
+    "clean": "rm -rf node_modules"
   },
   "config": {
     "commitizen": {

@@ -49,7 +49,6 @@ onUnmounted(() => {
 // 提交表单
 const submitForm = function (formEl: FormInstance | undefined) {
   alert('提交表单')
-  router.push('/')
 	if (!formEl) return
 	formEl.validate(async (valid) => {
 		if (valid) {
@@ -62,7 +61,7 @@ const submitForm = function (formEl: FormInstance | undefined) {
 }
 
 const go = () => {
-  router.push('/register')
+  router.push('/home')
 }
 
 // 回车键登录
@@ -110,17 +109,25 @@ const resetForm = (formEl: FormInstance | undefined) => {
           />
         </el-form-item>
         <el-form-item class="login-button">
-          <o-button type="success" @click="go()" @keydown.enter="keyDown($event)" w-23 work-spacing-5 mr-2>
-            登&nbsp;&nbsp;&nbsp;陆
-          </o-button>
+            <o-button type="success" @click="go()" @keydown.enter="keyDown($event)" w-23 work-spacing-5 mr-2>
+              登&nbsp;&nbsp;&nbsp;陆
+            </o-button>
           <o-button type="info" @click="resetForm(ruleFormRef)" w-23 work-spacing-5>
             重&nbsp;&nbsp;&nbsp;置
           </o-button>
         </el-form-item>
       </el-form>
       <router-link to="/register" tag="div" class="goRegister" align="right" text-3 color-green-600>
-        没有账号？转去注册 
+        没有账号？转去注册
       </router-link>
     </template>
   </AuthBox>
 </template>
+
+<route lang="yaml">
+name: Login
+meta:
+  layout: auth
+  requiresAuth: false
+</route>
+

@@ -7,6 +7,7 @@ import App from './App.vue'
 import type { UserModule } from '../types/types'
 
 import '@unocss/reset/tailwind.css'
+import 'element-plus/dist/index.css'
 import 'onu-ui/dist/style.css'
 import './styles/main.css'
 import 'uno.css'

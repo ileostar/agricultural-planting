@@ -15,6 +15,7 @@
     "format": "soy prettier-write",
     "commit": "soy git-commit",
     "cleanup": "soy cleanup",
+    "clean": "rm -rf node_modules",
     "update-pkg": "soy ncu",
     "tsx": "tsx",
     "logo": "tsx ./scripts/logo.ts"
@@ -67,10 +68,5 @@
     "vite-plugin-svg-icons": "2.0.1",
     "vite-plugin-vue-devtools": "1.0.0-rc.4",
     "vue-tsc": "1.8.13"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "mockjs@1.1.0": "patches/mockjs@1.1.0.patch"
-    }
   }
 }

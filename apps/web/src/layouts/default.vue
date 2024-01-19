@@ -1,74 +1,41 @@
-<script setup>
-import 'css-doodle';
-const doodle = document.querySelector('css-doodle');
-
-document.addEventListener('click', function(e) {
-  doodle.update();
-});
-</script>
-
 <template>
-  <main font-sans text="center gray-700 dark:gray-200" relative m-0 h-full w-full>
-    <div class="auth-box" m-0 relative justify-center items-center w-full h-full overflow-hidden>
-      <div class="auth-box__content" flex w-2xl h-110 rd-8 bg="gray/30" p-5 opacity-90>
-        <RouterView />
-      </div>
-      <css-doodle h-full w-full>
-            :doodle {
-                @grid: 2x40 / 100vmin;
-            }
-            @place-cell: center;
-            width: @rand(60vmin, 100vmin);
-            height: @rand(60vmin, 100vmin);
-            transform: translate(@rand(-120%, 120%), @rand(-80%, 80%)) scale(@rand(.8, 2.8)) skew(@rand(45deg));
-            clip-path: polygon(
-              @r(0, 30%) @r(0, 50%),
-              @r(30%, 60%) @r(0%, 30%),
-              @r(60%, 100%) @r(0%, 50%),
-              @r(60%, 100%) @r(50%, 100%),
-              @r(30%, 60%) @r(60%, 100%),
-              @r(0, 30%) @r(60%, 100%)
-            );
-            background: @pick(#e6437d, #ebbf4d, #5ee463, #f8e645, #ffc107, #43f8bf, #e136eb, #f57c23, #32ed39);
-            opacity: @rand(.45, .65);
-            position: relative;
-            top: @rand(-80%, 80%);
-            left: @rand(-80%, 80%);
-            animation: colorChange @rand(6.1s, 26.1s) infinite @rand(-.5s, -2.5s) linear alternate;
-          @keyframes colorChange {
-            100% {
-              left: 0;
-              top: 0;
-              filter: hue-rotate(360deg);
-            }
-          }
-      </css-doodle>
-    </div>
-  </main>
+  <el-container class="index-main" h-full overflow-hidden>
+    <el-header>
+      <TheHeader/>
+    </el-header>
+    <el-container>
+      <el-aside px-3 flex items-center>
+        <SideMenu/>
+      </el-aside>
+      <el-main>
+        <RouterView/>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <style scoped>
-.auth-box::after {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  right: -100%;
-  bottom: -100%;
-  backdrop-filter: blur(100px);
-  z-index: 1;
+.index-main {
+  backdrop-filter: blur(20px);
+  background: #CCDAED;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(180deg, rgba(237, 242, 224,.7), rgba(0, 201, 255,.7));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(260deg, rgba(241, 255, 205, 0.8), rgba(229, 240, 240, 0.8), rgba(0, 201, 255,.4)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.auth-box__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px;
-  color: #000;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-  background-color: rgba(216, 227, 223, 0.6);
-  box-shadow: 6px 6px 20px 0px rgba(255, 255, 255, 0.4), inset -5px -5px 10px 0px rgba(145, 192, 255, 0.6), inset 0px 8px 8px 0px rgb(255, 255, 255);
+.el-header {
+  padding: 0;
+}
+
+.el-aside {
+  width: auto;
+}
+
+.el-main {
+  backdrop-filter: blur(6px) saturate(170%);
+  -webkit-backdrop-filter: blur(6px) saturate(170%);
+  background-color: rgba(255,255,255,0.76);
+  border-top-left-radius: 2rem;
+  padding: 1rem;
+  border: 1px solid rgba(209, 213, 219, 0.3);
 }
 </style>

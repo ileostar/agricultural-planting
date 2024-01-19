@@ -1,5 +1,5 @@
 <script setup lang="ts">
- // @ts-ignore
+// @ts-ignore
 import { Vue3Lottie } from 'vue3-lottie'
 import RegisterJSON from '@/assets/lottie/register.json'
 import type { FormInstance } from 'element-plus'
@@ -25,15 +25,6 @@ interface DomainItem {
   value: string
 }
 
-onMounted(() => {
-	//绑定监听事件
-	window.addEventListener('keydown', keyDown)
-});
-onUnmounted(() => {
-	//销毁事件
-	window.removeEventListener('keydown', keyDown, false)
-});
-
 // 提交表单
 const submitForm = function (formEl: FormInstance | undefined) {
 	if (!formEl) return
@@ -52,6 +43,8 @@ const keyDown = (e: { keyCode: number }) => {
 		submitForm(ruleFormRef.value)
 	}
 }
+
+useEventListener('keydown', keyDown)
 </script>
 
 <template>
@@ -130,7 +123,7 @@ const keyDown = (e: { keyCode: number }) => {
         <el-form-item class="login-button">
           <div flex justify-between w-full>
             <router-link to="/login" tag="div" class="goRegister" text-3 color-green-600 >
-              已有账号，去登陆 
+              已有账号，去登陆
             </router-link>
             <o-button type="success" @click="submitForm(ruleFormRef)"  @keydown.enter="keyDown($event)" w-30 work-spacing-5>
               注&nbsp;&nbsp;&nbsp;册
@@ -141,3 +134,10 @@ const keyDown = (e: { keyCode: number }) => {
     </template>
   </AuthBox>
 </template>
+
+<route lang="yaml">
+name: Register
+meta:
+  layout: auth
+  requiresAuth: false
+</route>

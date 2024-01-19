@@ -55,6 +55,11 @@ export default defineConfig((mode: ConfigEnv) => {
       extensions: ['.js', '.json', '.ts'],
     },
     plugins: [
+      // https://github.com/posva/unplugin-vue-router
+      VueRouter({
+        dts: './types/vue-router.d.ts',
+      }),
+
     // https://github.com/vue-macros/vue-macros
       VueMacros({
         defineOptions: false,
@@ -85,11 +90,6 @@ export default defineConfig((mode: ConfigEnv) => {
 
       Layouts(),
 
-      // https://github.com/posva/unplugin-vue-router
-      VueRouter({
-        dts: './types/vue-router.d.ts',
-      }),
-
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         include: [
@@ -101,6 +101,7 @@ export default defineConfig((mode: ConfigEnv) => {
         imports: [
           'vue',
           'pinia',
+          'vue-i18n',
           '@vueuse/core',
           VueRouterAutoImports,
           {
@@ -208,6 +209,14 @@ export default defineConfig((mode: ConfigEnv) => {
         },
       }),
 
+      {
+        name: 'remove-swiper',
+        transform(code, id, options = {}) {
+          if (options.ssr)
+            return code.replace(/import .swiper\/(s?css|less).*$/gm, '')
+        },
+      },
+
       // https://github.com/feat-agency/vite-plugin-webfont-dl
       WebfontDownload(),
 
@@ -230,10 +239,10 @@ export default defineConfig((mode: ConfigEnv) => {
         generateSitemap()
       },
     },
-  
+
     ssr: {
       // TODO: workaround until they support native ESM
-      noExternal: ['workbox-window', /vue-i18n/],
+      noExternal: ['workbox-window', /vue-i18n/,'element-plus'],
     },
   }
 })

@@ -21,7 +21,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo test --no-daemon",
     "test:cov": "jest run --coverage",
-    "clean": "turbo run clean && rm -rf node_modules",
+    "clean": "turbo run clean && -rf node_modules",
     "typecheck": "tsc --noEmit",
     "commit": "git add . && git-cz"
   },
@@ -35,6 +35,7 @@
     "*.json": "prettier --write"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^2.0.0",
     "@repo/config": "workspace:^",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -45,6 +46,7 @@
     "markdownlint": "^0.33.0",
     "prettier": "^3.2.1",
     "prisma": "^5.8.0",
+    "rimraf": "^5.0.5",
     "rspress": "^1.9.3",
     "tsconfig": "workspace:^",
     "turbo": "1.10.12"
