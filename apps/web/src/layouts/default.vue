@@ -1,5 +1,5 @@
 <template>
-  <el-container class="index-main" h-full overflow-hidden>
+  <el-container class="index-main dark:bg-black" h-full overflow-hidden >
     <el-header>
       <TheHeader/>
     </el-header>
@@ -7,7 +7,7 @@
       <el-aside px-3 flex items-center>
         <SideMenu/>
       </el-aside>
-      <el-main>
+      <el-main w-full h-full>
         <RouterView/>
       </el-main>
     </el-container>

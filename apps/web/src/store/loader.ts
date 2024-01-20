@@ -3,7 +3,7 @@ export default defineStore('loader', () => {
     loading_out: false
   })
 
-  function PageIn(next) {
+  function PageIn(next: () => void) {
     className.value.loading_out = false
     setTimeout(() => {
         next();

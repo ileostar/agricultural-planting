@@ -317,6 +317,7 @@
     "eventListener": true,
     "user": true,
     "ElMessage": true,
-    "loader": true
+    "loader": true,
+    "page": true
   }
 }

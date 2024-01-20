@@ -5,6 +5,7 @@
 import type { AutoToRefs, ToRef } from 'vue'
 
 import loaderStore from '@/store/loader'
+import pageStore from '@/store/page'
 import userStore from '@/store/user'
 
 import store from '@/store'
@@ -17,6 +18,7 @@ declare module 'vue' {
 
 const storeExports = {
   loader: loaderStore,
+  page: pageStore,
   user: userStore,
 }
 
