@@ -35,7 +35,6 @@
     "*.json": "prettier --write"
   },
   "devDependencies": {
-    "@intlify/unplugin-vue-i18n": "^2.0.0",
     "@repo/config": "workspace:^",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",

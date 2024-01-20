@@ -8,7 +8,7 @@ export class User {
   id: string
 
   @Column({
-    comment: '学生姓名',
+    comment: '用户名',
     length: 100,
     default: '',
   })
@@ -16,34 +16,23 @@ export class User {
   username: string
 
   @Column({
-    comment: '学号',
-    type: 'bigint',
-  })
-  student_number: number
-
-  @Column({
     comment: '密码',
   })
   password: string
 
   @Column({
-    comment: '邮箱',
+    comment: '头像地址',
     length: 100,
-    default: '',
+    default: 'https://cdn.jsdelivr.net/gh/ileostar/picx-images@master/20240120/leostar-profile.1aheunrxjl9c.avif',
   })
-  email: string
+  avatarUrl: string
 
   @Column({
-    comment: '性别',
-    length: 2,
-    default: '男',
+    comment: '用户权限',
+    length: 100,
+    default: '0',
   })
-  sex: string
-
-  @Column({
-    comment: '年级',
-  })
-  grade: number
+  auth: string
 
   @Column({
     name: 'create_time',
@@ -61,10 +50,10 @@ export class User {
 
   /**
    * 插入密码前加密
-   * @return {void} 
+   * @return {void}
    */
-  @BeforeInsert() 
-  async encryptPwd() { 
+  @BeforeInsert()
+  async encryptPwd() {
     this.password = await bcrypt.hashSync(this.password)
-  } 
+  }
 }

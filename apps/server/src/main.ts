@@ -6,9 +6,9 @@ import { AppModule } from './app.module'
 
 function setupSwagger(app) {
   const config = new DocumentBuilder()
-    .setTitle('前端三轮考核接口')
-    .setContact('考核题目链接☛', 'https://dkmjddbh0f.feishu.cn/docx/T7IAdyWpho6ZUhxkSuqciIj1nKQ?from=from_copylink', null)
-    .setDescription('师弟师妹们加油🦆~~~')
+    .setTitle('服创A18选题Nestjs API')
+    .setContact('选题链接☛', 'https://dkmjddbh0f.feishu.cn/docx/COSodlq6zopSwyxDg70chsdPnMg', null)
+    .setDescription('后端技术栈：Nestjs+TypeORM+Redis+Serverless')
     .setVersion('1.0')
     .build()
   const document = SwaggerModule.createDocument(app, config)

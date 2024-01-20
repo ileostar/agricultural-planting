@@ -6,7 +6,7 @@ import * as bcrypt from 'bcryptjs'
 import { JwtService } from '@nestjs/jwt'
 import { User } from './models/user.entity'
 import { UserInfosDto } from './dto/user.dto'
-import type { CreateUserDto, LoginDto, PagingUserData } from './dto/user.dto'
+import type { CreateUserDto, LoginDto } from './dto/user.dto'
 
 
 @Injectable()
@@ -22,10 +22,10 @@ export class UserService {
    * @returns Promise<User>
    */
   async login(loginDto: LoginDto): Promise<string> {
-    if (loginDto.password.length < 8 || loginDto.password.length > 16) 
+    if (loginDto.password.length < 5 || loginDto.password.length > 16) 
       return '密码格式不对'
     const findUser = await this.UserRepository.findOne({
-      where: { student_number: loginDto.stuNum },
+      where: { username: loginDto.username },
     })
     // 没有找到
     if (!findUser) 
@@ -49,78 +49,25 @@ export class UserService {
    */
   async createUser(createUserDto: CreateUserDto) {
     const findUser = await this.UserRepository.findOne({
-      where: { username: createUserDto.stuName },
+      where: { username: createUserDto.username },
     })
-    const findUser2 = await this.UserRepository.findOne({
-      where: { student_number: createUserDto.stuNum },
-    })
-    if (findUser && findUser.username === createUserDto.stuName) 
+    if (findUser && findUser.username === createUserDto.username) 
       return '用户已存在'
-    if (findUser2 && Number(findUser2.student_number) === createUserDto.stuNum) 
-      return '学号已存在'
-    if (createUserDto.stuName.length > 11 || createUserDto.stuName.length < 1) 
-      return '姓名格式不对'
     if (createUserDto.password !== createUserDto.confirmPassword) 
       return '两次密码不一致'
-    if (Object.is(createUserDto.stuNum.toLocaleString.length, 11)) 
-      return '学号格式不对'
-    if (createUserDto.password.length < 8 || createUserDto.password.length > 16) 
+    if (createUserDto.password.length < 5 || createUserDto.password.length > 16) 
       return '密码格式不对'
 
     // 对密码进行加密处理
-    const { stuName, password, email, stuNum, sex, grade } = createUserDto
+    const { username, password } = createUserDto
 
     const user = new User()
-    user.username = stuName
-    user.email = email
-    user.student_number = stuNum
-    user.sex = sex
-    user.grade = grade
+    user.username = username
     user.password = password
     await this.UserRepository.save(user)
     return '注册成功'
   }
 
-  /**
-   * 查找所有用户（分页版）
-   * @returns Promise<User>
-   */
-  async findAllPaging(pageNum: number, pageCount: number): Promise<PagingUserData | null> {
-    const skip = (pageCount - 1) * pageNum
-    const take = pageNum
-
-    const [resData, totalCount] = await Promise.all([
-      this.UserRepository.find({
-        take,
-        skip,
-      }),
-      this.UserRepository.count(),
-    ])
-
-    if (resData.length === 0) 
-      return null
-    
-    const usersData = resData.map((result) => {
-      const dto = new UserInfosDto()
-      dto.email = result.email
-      dto.stuNum = result.student_number
-      dto.stuName = result.username
-      dto.grade = result.grade
-      dto.sex = result.sex
-      return dto
-    })
-    const pageTotals = Math.ceil(totalCount / pageNum)
-    
-    return { 
-      usersData,
-      pageTotals,
-      totalCount,
-      pageNum,
-      pageCount,
-    }
-  }
-
-  
   /**
    * 查找所有用户
    * @returns Promise<User>
@@ -130,105 +77,37 @@ export class UserService {
 
     const usersData = resData.map((result) => {
       const dto = new UserInfosDto()
-      dto.email = result.email
-      dto.stuNum = result.student_number
-      dto.stuName = result.username
-      dto.grade = result.grade
-      dto.sex = result.sex
+      dto.username = result.username
+      dto.avatarUrl = result.avatarUrl
       return dto
     })
-    
+
     return usersData
   }
 
   /**
-   * 根据student_number查找用户
-   * @param student_number
+   * 根据ID删除用户
+   * @param id
    * @returns Promise<User>
    */
-  async findByStuNum(student_number: number): Promise<User | null> {
-
-    const res = await this.UserRepository.findOne({
-      where: {
-        student_number,
-      },
-    })
-  
-    if (!res) 
-      return null
-    
-    
-    return res
-  }
-
-  /**
-   * 根据username查找用户
-   * @param username
-   * @returns Promise<User>
-   */
-  async findByName(username: string, pageNum: number, pageCount: number): Promise<PagingUserData | null> {
-    const skip = (pageCount - 1) * pageNum
-    const take = pageNum
-
-    const [resData, totalCount] = await Promise.all([
-      this.UserRepository.find({
-        where: {
-          username,
-        },
-        take,
-        skip,
-      }),
-      this.UserRepository.count({
-        where: {
-          username,
-        },
-      }),
-    ])
-
-    const usersData = resData.map((result) => {
-      const dto = new UserInfosDto()
-      dto.email = result.email
-      dto.stuNum = result.student_number
-      dto.stuName = result.username
-      dto.grade = result.grade
-      dto.sex = result.sex
-      return dto
-    })
-    
-    const pageTotals = Math.ceil(totalCount / pageNum)
-
-    return { 
-      usersData, 
-      pageTotals,
-      totalCount,
-      pageNum,
-      pageCount,
-    }
-  }
-
-  /**
-   * 根据student_number删除用户
-   * @param student_number 
-   * @returns Promise<User>
-   */
-  async delUser(student_number: number): Promise<boolean> {
-    const res = await this.UserRepository.delete(student_number)
+  async delUser(id: string): Promise<boolean> {
+    const res = await this.UserRepository.delete(id)
     if (res.affected > 0) 
       return true
 
     return false
   }
-  
+
   /**
-   * 修改用户
-   * @param student_number 
+   * 根据ID修改用户
+   * @param id
    * @returns Promise<User>
    */
-  async updateUser(student_number: number, entity: DeepPartial<User>): Promise<boolean> {
-    const res = await this.UserRepository.update(student_number, entity)
+  async updateUser(id: number, entity: DeepPartial<User>): Promise<boolean> {
+    const res = await this.UserRepository.update(id, entity)
     if (res.affected > 0) 
       return true
-    
+
     return false
   }
 }
