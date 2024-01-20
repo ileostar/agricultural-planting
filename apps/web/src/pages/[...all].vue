@@ -1,6 +1,10 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <div>
-    not-found
+    {{ t('not-found') }}
   </div>
 </template>
 

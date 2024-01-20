@@ -4,8 +4,6 @@ import type { UserModule } from '../../types/types'
 
 // Import i18n resources
 // https://vitejs.dev/guide/features.html#glob-import
-//
-// Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
 const i18n = createI18n({
   legacy: false,
   locale: '',
@@ -46,5 +44,5 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 export const install: UserModule = ({ app }) => {
   app.use(i18n)
-  loadLanguageAsync('en')
+  loadLanguageAsync('zh-CN')
 }

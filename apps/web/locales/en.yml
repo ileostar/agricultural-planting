@@ -1,3 +1,4 @@
+Plant-monitoring-system: Plant monitoring system
 button:
   about: About
   back: Back
@@ -6,9 +7,9 @@ button:
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
 intro:
+  aka: Also known as
   desc: Opinionated Vite Starter Template
   dynamic-route: Demo of dynamic route
   hi: Hi, {name}!
-  aka: Also known as
   whats-your-name: What's your name?
 not-found: Not found

@@ -1,6 +1,5 @@
 {
   // other config
-  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router"],
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
@@ -8,13 +7,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.sortKeys": true,
-  "i18n-ally.enabledParsers": ["ts", "json"],
-  "i18n-ally.sourceLanguage": "zh-CN",
-  "i18n-ally.displayLanguage": "zh-CN",
-  "i18n-ally.enabledFrameworks": ["react"],
-  "i18n-ally.localesPaths": ["apps/web/locale"],
   "workbench.colorTheme": "Dracula",
   "workbench.editor.tabCloseButton": "left",
   "workbench.iconTheme": "vscode-great-icons",
