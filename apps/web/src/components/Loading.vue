@@ -1,9 +1,16 @@
 <template>
-  <div id="loading">
-      <svg viewBox='0 0 50 50'>
-          <circle r='25' cx='25' cy='25'></circle>
-      </svg>
-      <p>LOADING</p>
+  <div id="loading" bg-green>
+    <div class="loader">
+      <ul class="hexagon-container">
+        <li class="hexagon hex_1"></li>
+        <li class="hexagon hex_2"></li>
+        <li class="hexagon hex_3"></li>
+        <li class="hexagon hex_4"></li>
+        <li class="hexagon hex_5"></li>
+        <li class="hexagon hex_6"></li>
+        <li class="hexagon hex_7"></li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -19,7 +26,7 @@ export default {
           setTimeout(() => {
               next();
               this.$parent.check_loading();
-          }, 1000);
+          }, 700);
       },
       out() {
           let conainer = document.getElementById("loading");
@@ -30,7 +37,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped lang="scss">
 #loading {
   position: fixed;
   flex-direction: column;
@@ -38,46 +45,174 @@ export default {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #f7f7f7;
   z-index: 100000000;
   transition: 1s ease;
 }
 
-#loading svg {
-  width: 5rem;
-  margin-bottom: 2rem;
-  overflow: visible;
-  transition: 0.3s ease;
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  margin: -80px 0px 0px -80px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid #E3E4DC;
+  // animation: rotate3 3s linear infinite;
+  &:before {
+    content: '';
+    width: 164px;
+    height: 164px;
+    display: block;
+    position: absolute;
+    border: 2px solid #898a86;
+    border-radius: 50%;
+    top: -2px;
+    left: -2px;
+    box-sizing: border-box;
+    // border-bottom-color: transparent;
+    // border-left-color: transparent;
+    // border-right-color: transparent;
+    clip: rect(0px, 35px, 35px, 0px);
+    z-index: 10;
+    animation: rotate infinite;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+  }
+  &:after {
+    content: '';
+    width: 164px;
+    height: 164px;
+    display: block;
+    position: absolute;
+    border: 2px solid #c1bebb;
+    border-radius: 50%;
+    top: -2px;
+    left: -2px;
+    box-sizing: border-box;
+    // transform: rotate(30deg);
+    // border-bottom-color: transparent;
+    // border-left-color: transparent;
+    // border-right-color: transparent;
+    clip: rect(0px, 164px, 150px, 0px);
+    z-index: 9;
+    // animation: rotate2 infinite, rotate3 infinite;
+    // animation-duration: 3s;
+    // animation-timing-function: linner;
+    animation: rotate2 3s linear infinite;
+  }
 }
 
-#loading svg circle {
-  fill: none;
-  stroke: #171717;
-  stroke-width: 12;
-  stroke-dasharray: 160;
-  stroke-dashoffset: 160;
-  transform-origin: center;
-  animation: circle_rotate 3s ease-in infinite;
+.hexagon-container {
+  position: relative;
+  top: 33px;
+  left: 41px;
+  border-radius: 50%;
 }
 
-@keyframes circle_rotate {
+.hexagon {
+  position: absolute;
+  width: 40px;
+  height: 23px;
+  background-color: #556C82;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 11.5px solid #556C82;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 11.5px solid #556C82;
+  }
+}
+
+@each $index,
+$top,
+$left in (1, 0px, 0px),
+(2, 0px, 42px),
+(3, 36px, 63px),
+(4, 72px, 42px),
+(5, 72px, 0px),
+(6, 36px, -21px),
+(7, 36px, 21px) {
+  $time: 3s; // thx to @zeakd for this formula
+  $delay: calc($time / 14);
+  .hexagon.hex_#{$index} {
+    top: $top;
+    left: $left;
+    //cubic-bezier(.155,1.105,.295,1.12)
+    animation: Animasearch $time ease-in-out infinite;
+    animation-delay: $delay*$index;
+  }
+}
+
+@keyframes Animasearch {
   0% {
-      transform: rotate(0deg);
-      stroke-dashoffset: 160;
+    transform: scale(1);
+    opacity: 1;
   }
-
-  100% {
-      transform: rotate(360deg);
-      stroke-dashoffset: -160;
+  15%,
+  50% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-#loading p {
-  font-family: sans-serif;
-  font-size: 2rem;
-  color: #171717;
-  font-weight: 900;
-  transition: 0.3s ease;
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+    clip: rect(0px, 35px, 35px, 0px);
+  }
+  50% {
+    clip: rect(0px, 40px, 40px, 0px);
+  }
+  100% {
+    transform: rotate(360deg);
+    clip: rect(0px, 35px, 35px, 0px);
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    transform: rotate(0deg);
+    clip: rect(0px, 164px, 150px, 0px);
+  }
+  50% {
+    clip: rect(0px, 164px, 0px, 0px);
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(720deg);
+    clip: rect(0px, 164px, 150px, 0px);
+  }
+}
+
+@keyframes rotate3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading_out {

@@ -1,24 +1,31 @@
-<script setup>
+<script>
 import { StarportCarrier } from 'vue-starport'
 
-const { PageIn, PageOut, checkLoading } = useStore('loader')
-
-// 全局加载动画
-const router = useRouter()
-
-onMounted(() => {
-  checkLoading();
-  router.beforeEach((to, from, next) => {
-    PageIn(next);
-  });
-  router.afterEach((to, from) => {
-    PageOut();
-  });
-})
+export default {
+    // JIEJOE produce
+    // b站主页：https://space.bilibili.com/3546390319860710
+    name: "App",
+    methods: {
+        check_loading() {
+            let timer = setInterval(() => {
+                if (document.readyState === "complete") {
+                    clearInterval(timer);
+                    this.$refs.loading.out();
+                }
+            }, 300);
+        },
+    },
+    mounted() {
+        this.check_loading();
+        this.$router.beforeEach((to, from, next) => {
+            this.$refs.loading.in(next);
+        });
+    },
+};
 </script>
 
 <template>
-    <Loading/>
+    <Loading ref="loading" />
     <StarportCarrier>
       <RouterView />
     </StarportCarrier>
