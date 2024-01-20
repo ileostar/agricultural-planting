@@ -15,7 +15,7 @@ document.addEventListener('click', function(e) {
       </div>
       <css-doodle h-full w-full>
             :doodle {
-                @grid: 2x40 / 100vmin;
+                @grid: 2x35 / 100vmin;
             }
             @place-cell: center;
             width: @rand(60vmin, 100vmin);
@@ -30,7 +30,7 @@ document.addEventListener('click', function(e) {
               @r(0, 30%) @r(60%, 100%)
             );
             background: @pick(#e6437d, #ebbf4d, #5ee463, #f8e645, #ffc107, #43f8bf, #e136eb, #f57c23, #32ed39);
-            opacity: @rand(.45, .65);
+            opacity: @rand(.45, .6);
             position: relative;
             top: @rand(-80%, 80%);
             left: @rand(-80%, 80%);

@@ -137,6 +137,7 @@ export default defineConfig((mode: ConfigEnv) => {
           './src/components',
           './src/store',
           './src/composables',
+          './src/api/methods'
         ],
         vueTemplate: true,
         injectAtEnd: true,

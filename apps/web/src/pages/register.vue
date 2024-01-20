@@ -44,7 +44,7 @@ const keyDown = (e: { keyCode: number }) => {
 	}
 }
 
-useEventListener('keydown', keyDown)
+eventListener('keydown', keyDown)
 </script>
 
 <template>

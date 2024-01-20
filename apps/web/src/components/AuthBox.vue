@@ -17,7 +17,7 @@ import LogoJSON from '@/assets/lottie/logo.json'
       <h2 my-2 mt-8 font-bold text-5 color-green-500 text-center>
         <slot name="header"></slot>
       </h2>
-      <div h-50>
+      <div h-60 pb-5>
         <slot name="content"></slot>
       </div>
     </div>

@@ -8,7 +8,8 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 import { presetDaisy } from "unocss-preset-daisy";
-import { presetGrid } from 'unocss-preset-grid'
+import { presetGrid } from 'unocss-preset-grid';
+import { presetOnu } from 'onu-ui';
 
 export default defineConfig({
   shortcuts: [
@@ -21,6 +22,7 @@ export default defineConfig({
     presetUno(),
     presetGrid(),
     presetAttributify(),
+    presetOnu(),
     presetIcons({
       scale: 1.2,
       warn: true,

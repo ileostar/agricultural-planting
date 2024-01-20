@@ -313,6 +313,10 @@
     "defineLoader": true,
     "definePage": true,
     "useI18n": true,
-    "preferredDark": true
+    "preferredDark": true,
+    "eventListener": true,
+    "user": true,
+    "ElMessage": true,
+    "loader": true
   }
 }

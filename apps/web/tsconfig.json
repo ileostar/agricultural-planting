@@ -18,7 +18,8 @@
       "unplugin-vue-macros/macros-global",
       "vite-plugin-pwa/client",
       "vite-plugin-vue-layouts/client",
-      "element-plus/global"
+      "element-plus/global",
+      "onu-ui"
     ],
     "resolveJsonModule": true,
     "allowJs": true,
