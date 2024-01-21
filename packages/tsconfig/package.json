@@ -6,7 +6,6 @@
   "files": [
     "base.json",
     "docs.json",
-    "admin.json",
     "server.json",
     "web.json"
   ]
