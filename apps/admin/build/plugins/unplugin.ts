@@ -13,14 +13,14 @@ export default function unplugin(viteEnv: ImportMetaEnv) {
   const localIconPath = `${srcPath}/assets/svg-icon`;
 
   /** 本地svg图标集合名称 */
-  const collectionName = VITE_ICON_LOCAL_PREFIX.replace(`${VITE_ICON_PREFIX}-`, '');
+  const collectionName = VITE_ICON_LOCAL_PREFIX?.replace(`${VITE_ICON_PREFIX}-`, '');
 
   return [
     Icons({
       compiler: 'vue3',
       customCollections: {
         [collectionName]: FileSystemIconLoader(localIconPath, svg =>
-          svg.replace(/^<svg\s/, '<svg width="1em" height="1em" ')
+          svg?.replace(/^<svg\s/, '<svg width="1em" height="1em" ')
         )
       },
       scale: 1,
