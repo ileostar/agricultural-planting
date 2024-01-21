@@ -13,7 +13,6 @@
     "typecheck": "vue-tsc --noEmit --skipLibCheck",
     "lint": "eslint . --fix",
     "format": "soy prettier-write",
-    "commit": "soy git-commit",
     "cleanup": "soy cleanup",
     "clean": "rm -rf node_modules",
     "update-pkg": "soy ncu",

@@ -17,7 +17,6 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     Loading: typeof import('./../src/components/Loading.vue')['default']
-    Loadings: typeof import('./../src/components/Loadings.vue')['default']
     OButton: typeof import('onu-ui')['OButton']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
