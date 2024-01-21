@@ -1,0 +1,33 @@
+{
+	"extends": "./base.json",
+  "compilerOptions": {
+    "target": "ES2016",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": [
+      "vitest",
+      "vite/client",
+      "@alova/adapter-axios",
+      "@intlify/unplugin-vue-i18n/messages",
+      "unplugin-vue-macros/macros-global",
+      "vite-plugin-pwa/client",
+      "vite-plugin-vue-layouts/client",
+      "element-plus/global",
+      "onu-ui"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-models",
+      "@vue-macros/volar/define-slots"
+    ]
+  }
+}

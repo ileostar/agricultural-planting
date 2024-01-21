@@ -1,0 +1,7 @@
+{
+	"extends": "./base.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react-jsx"
+  }
+}

@@ -1,41 +1,5 @@
 {
-  "compilerOptions": {
-    "target": "ES2016",
-    "lib": ["DOM", "ESNext"],
-    "jsx": "preserve",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["../../packages/*"]
-    },
-    "types": [
-      "vitest",
-      "vite/client",
-      "@alova/adapter-axios",
-      "@intlify/unplugin-vue-i18n/messages",
-      "unplugin-vue-macros/macros-global",
-      "vite-plugin-pwa/client",
-      "vite-plugin-vue-layouts/client",
-      "element-plus/global",
-      "onu-ui"
-    ],
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true
-  },
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-slots"
-    ]
-  },
+  "extends": "tsconfig/web.json",
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
