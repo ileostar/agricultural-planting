@@ -33,8 +33,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - name: Install Dependencies
+        run: npm install  # 添加这一行来安装依赖项
       - name: Build Rspress
-        run:  npm run docs:build
+        run: npm run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
