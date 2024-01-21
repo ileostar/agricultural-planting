@@ -84,7 +84,7 @@ function formatNumber(num: number | string) {
   let number = Number(num).toFixed(decimals);
   number = String(number);
 
-  const x = number.split('.');
+  const x = number?.split('.');
   let x1 = x[0];
   const x2 = x.length > 1 ? decimal + x[1] : '';
   const rgx = /(\d+)(\d{3})/;
