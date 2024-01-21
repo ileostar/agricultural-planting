@@ -1,19 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "pnpm run build",
-      "use": "@vercel/static-build",
-      "config": {
-        "NODE_VERSION": "20"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 200
-    }
-  ]
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"buildCommand": "pnpm turbo build",
+	"outputDirectory": "dist"
 }
