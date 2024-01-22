@@ -69,7 +69,7 @@
     "eslint-define-config": "^2.1.0",
     "https-localhost": "^4.7.1",
     "husky": "^8.0.3",
-    "jsdom": "^23.2.0",
+    "jsdom": "^24.0.0",
     "lint": "^0.8.19",
     "lint-staged": "^15.2.0",
     "onu-ui": "1.0.14-beta.2",
