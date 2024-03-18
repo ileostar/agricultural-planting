@@ -55,7 +55,7 @@
     "@unocss/eslint-config": "^0.58.3",
     "@unocss/eslint-plugin": "^0.58.3",
     "@unocss/preset-icons": "^0.58.3",
-    "@vitejs/plugin-vue": "^5.0.3",
+    "@vitejs/plugin-vue": "^5.0.4",
     "@vue-macros/volar": "^0.18.10",
     "@vue/test-utils": "^2.4.3",
     "commitizen": "^4.3.0",
